@@ -7,7 +7,7 @@
       <button (click)="searchImages()" [disabled]="!searchForm.form.valid || loading" type="submit">Search</button>
     </form>
   </div>
-  <div class="error-container">
+  <div class="error-container" *ngIf="hasError">
     Error loading images!
   </div>
   <div class="image-container">
