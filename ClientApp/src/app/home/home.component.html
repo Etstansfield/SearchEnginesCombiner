@@ -1,0 +1,17 @@
+
+
+<div class="container">
+  <div class="search-container">
+    <form #searchForm="ngForm">
+      <input [disabled]="loading" required [(ngModel)]="searchTerm" name="search" type="text" />
+      <button (click)="searchImages()" [disabled]="!searchForm.form.valid || loading" type="submit">Search</button>
+    </form>
+  </div>
+  <div class="error-container">
+    Error loading images!
+  </div>
+  <div class="image-container">
+      <img *ngFor="let img of images" src="{{img}}"/>
+  </div>
+</div>
+
