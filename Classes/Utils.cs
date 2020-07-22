@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using SearchEngines.Interfaces;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Net.Http;
 using System.Text.RegularExpressions;
@@ -9,15 +10,14 @@ namespace SearchEngines.Classes
     public class Utils
     {
 
-        public static async Task<List<string>> getImageResults(string url)
+        public static async Task<List<string>> getImageResults(string url, IHttpClient client)
         {
-            var httpClient = new HttpClient();
-            HttpResponseMessage results;
             string finalResult = "";
             try
             {
-                results = await httpClient.GetAsync(url);
-                finalResult = await results.Content.ReadAsStringAsync();
+                var results = await client.GetAsync(url);
+                Debug.WriteLine(results);
+                finalResult = results;
             }
             catch (HttpRequestException err)
             {
