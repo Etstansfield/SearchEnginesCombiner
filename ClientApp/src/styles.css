@@ -24,6 +24,7 @@ code {
 
 .search-container {
     display: block;
+    padding-left: 37%;
 }
 
 .image-container {
@@ -33,6 +34,8 @@ code {
     justify-content: space-between;
     max-width: 100%;
     flex-wrap: wrap;
+    flex-basis: 0;
+    align-items: flex-start;
 }
 
 .error-container {

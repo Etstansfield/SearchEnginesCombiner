@@ -16,7 +16,7 @@ namespace SearchEngines.Classes
             try
             {
                 var results = await client.GetAsync(url);
-                Debug.WriteLine(results);
+                // Debug.WriteLine(results);
                 finalResult = results;
             }
             catch (HttpRequestException err)
