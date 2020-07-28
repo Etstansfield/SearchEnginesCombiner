@@ -24,20 +24,19 @@ namespace SearchEngines.Controllers
         }
 
         [HttpGet("{query}")]
-        public async Task<List<string>> Get(string query)
+        public async Task<IActionResult> Get(string query)
         {
-            Debug.WriteLine("HERE");
             HttpClientAdaptor client = new HttpClientAdaptor(_clientFactory);
 
             var googleImages = Google.getGoogleResults(query, client);
             var ecosiaImages = Ecosia.getEcosiaResults(query, client);
             var bingImages = Bing.getBingResults(query, client);
-            var yahooImages = Bing.getBingResults(query, client);
+            var yahooImages = Yahoo.getYahooResults(query, client);
 
             Task.WaitAll(new Task<List<string>>[] { googleImages, ecosiaImages, bingImages, yahooImages });
 
 
-            return googleImages.Result.Concat(ecosiaImages.Result).Concat(bingImages.Result).Concat(yahooImages.Result).ToList();
+            return Ok(googleImages.Result.Concat(ecosiaImages.Result).Concat(bingImages.Result).Concat(yahooImages.Result).ToList());
         }
 
         

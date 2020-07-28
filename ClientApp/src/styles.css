@@ -28,14 +28,14 @@ code {
 }
 
 .image-container {
-    margin-top: 4rem;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    max-width: 100%;
-    flex-wrap: wrap;
-    flex-basis: 0;
-    align-items: flex-start;
+  margin-top: 4rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  max-width: 100%;
+  flex-wrap: wrap;
+  flex-basis: 0;
+  align-items: flex-start;
 }
 
 .error-container {

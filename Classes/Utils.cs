@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Net.Http;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Linq;
 
 namespace SearchEngines.Classes
 {
@@ -40,7 +41,9 @@ namespace SearchEngines.Classes
             MatchCollection matches = imgRgx.Matches(rawHtml);
 
             string pattern = @"<img.*?src=""(?<url>http.*?)"".*?>";
+            string pattern2 = @"<img.*?src='(?<url>http.*?)'.*?>";
             Regex rx = new Regex(pattern);
+            Regex rx2 = new Regex(pattern2);
 
 
             foreach (Match match in matches)
@@ -57,8 +60,17 @@ namespace SearchEngines.Classes
                     // Debug.WriteLine("");
                     imgs.Add(m.Groups["url"].Value);
                 }
+
+                foreach (Match m in rx2.Matches(match.ToString()))
+                {
+                    // Debug.WriteLine("Tag: " + m.Value);
+                    // Debug.WriteLine("URL: " + m.Groups["url"].Value);
+                    // Debug.WriteLine("");
+                    imgs.Add(m.Groups["url"].Value);
+                }
             }
-            return imgs;
+
+            return imgs.Distinct().ToList();    // remove duplicate values picked up (especially from yahoo who have data-src in their images for some reason)
         }
     }
 }
